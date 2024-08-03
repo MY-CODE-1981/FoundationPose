@@ -44,13 +44,16 @@ if __name__=='__main__':
   reader = YcbineoatReader(video_dir=args.test_scene_dir, shorter_side=None, zfar=np.inf)
 
   for i in range(len(reader.color_files)):
+    print("0-1")
     logging.info(f'i:{i}')
     color = reader.get_color(i)
     depth = reader.get_depth(i)
     if i==0:
+      print("0-2")
       mask = reader.get_mask(0).astype(bool)
       pose = est.register(K=reader.K, rgb=color, depth=depth, ob_mask=mask, iteration=args.est_refine_iter)
 
+      print("0-3")
       if debug>=3:
         m = mesh.copy()
         m.apply_transform(pose)
@@ -59,9 +62,11 @@ if __name__=='__main__':
         valid = depth>=0.1
         pcd = toOpen3dCloud(xyz_map[valid], color[valid])
         o3d.io.write_point_cloud(f'{debug_dir}/scene_complete.ply', pcd)
+        print("0-4")
     else:
       pose = est.track_one(rgb=color, depth=depth, K=reader.K, iteration=args.track_refine_iter)
-
+      print("0-5")
+      
     os.makedirs(f'{reader.video_dir}/ob_in_cam', exist_ok=True)
     np.savetxt(f'{reader.video_dir}/ob_in_cam/{reader.id_strs[i]}.txt', pose.reshape(4,4))
 

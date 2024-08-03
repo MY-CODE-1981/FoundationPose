@@ -692,20 +692,26 @@ def draw_xyz_axis(color, ob_in_cam, scale=0.1, K=np.eye(3), thickness=3, transpa
   arrow_len = 0
   tmp = color.copy()
   tmp1 = tmp.copy()
-  tmp1 = cv2.arrowedLine(tmp1, origin, xx, color=(0,0,255), thickness=thickness,line_type=line_type, tipLength=arrow_len)
-  mask = np.linalg.norm(tmp1-tmp, axis=-1)>0
-  tmp[mask] = tmp[mask]*transparency + tmp1[mask]*(1-transparency)
-  tmp1 = tmp.copy()
-  tmp1 = cv2.arrowedLine(tmp1, origin, yy, color=(0,255,0), thickness=thickness,line_type=line_type, tipLength=arrow_len)
-  mask = np.linalg.norm(tmp1-tmp, axis=-1)>0
-  tmp[mask] = tmp[mask]*transparency + tmp1[mask]*(1-transparency)
-  tmp1 = tmp.copy()
-  tmp1 = cv2.arrowedLine(tmp1, origin, zz, color=(255,0,0), thickness=thickness,line_type=line_type, tipLength=arrow_len)
-  mask = np.linalg.norm(tmp1-tmp, axis=-1)>0
-  tmp[mask] = tmp[mask]*transparency + tmp1[mask]*(1-transparency)
-  tmp = tmp.astype(np.uint8)
-  if is_input_rgb:
-    tmp = cv2.cvtColor(tmp,cv2.COLOR_BGR2RGB)
+  # デバッグプリント
+  try:
+    print(f"origin: {origin}, type: {type(origin)}")
+    print(f"xx: {xx}, type: {type(xx)}")
+    tmp1 = cv2.arrowedLine(tmp1, origin, xx, color=(0,0,255), thickness=thickness,line_type=line_type, tipLength=arrow_len)
+    mask = np.linalg.norm(tmp1-tmp, axis=-1)>0
+    tmp[mask] = tmp[mask]*transparency + tmp1[mask]*(1-transparency)
+    tmp1 = tmp.copy()
+    tmp1 = cv2.arrowedLine(tmp1, origin, yy, color=(0,255,0), thickness=thickness,line_type=line_type, tipLength=arrow_len)
+    mask = np.linalg.norm(tmp1-tmp, axis=-1)>0
+    tmp[mask] = tmp[mask]*transparency + tmp1[mask]*(1-transparency)
+    tmp1 = tmp.copy()
+    tmp1 = cv2.arrowedLine(tmp1, origin, zz, color=(255,0,0), thickness=thickness,line_type=line_type, tipLength=arrow_len)
+    mask = np.linalg.norm(tmp1-tmp, axis=-1)>0
+    tmp[mask] = tmp[mask]*transparency + tmp1[mask]*(1-transparency)
+    tmp = tmp.astype(np.uint8)
+    if is_input_rgb:
+      tmp = cv2.cvtColor(tmp,cv2.COLOR_BGR2RGB)
+  except:
+    pass
 
   return tmp
 

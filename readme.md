@@ -91,9 +91,9 @@ For more recent GPU such as 4090, refer to [this](https://github.com/NVlabs/Foun
 ```bash
 cd $HOME && wget -q https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz && \
 tar -xzf eigen-3.4.0.tar.gz && \
-cd eigen-3.4.0 && mkdir build && cd build
-cmake .. -Wno-dev -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS=-std=c++14 ..
-sudo make install
+cd eigen-3.4.0 && mkdir build && cd build;
+cmake .. -Wno-dev -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS=-std=c++14 ..;
+sudo make install;
 cd $HOME && rm -rf eigen-3.4.0 eigen-3.4.0.tar.gz
 ```
 
@@ -101,7 +101,7 @@ cd $HOME && rm -rf eigen-3.4.0 eigen-3.4.0.tar.gz
 
 ```bash
 # create conda environment
-create -n foundationpose python=3.9
+conda create -n foundationpose python=3.9
 
 # activate conda environment
 conda activate foundationpose

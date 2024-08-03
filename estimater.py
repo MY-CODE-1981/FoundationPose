@@ -170,8 +170,8 @@ class FoundationPose:
       else:
         self.glctx = glctx
 
-    depth = erode_depth(depth, radius=2, device='cuda')
-    depth = bilateral_filter_depth(depth, radius=2, device='cuda')
+    # depth = erode_depth(depth, radius=2, device='cuda')
+    # depth = bilateral_filter_depth(depth, radius=2, device='cuda')
 
     if self.debug>=2:
       xyz_map = depth2xyzmap(depth, K)
