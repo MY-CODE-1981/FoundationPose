@@ -9,6 +9,7 @@ CMAKE_PREFIX_PATH=$CONDA_PREFIX/lib/python3.9/site-packages/pybind11/share/cmake
 pip install git+https://github.com/openai/CLIP.git
 
 foundationposeのルートにfastsamをクローン。
+git clone git@github.com:MY-CODE-1981/FastSAM.git
 
 ・実行
 テキストトピックをpublishするためにターミナルを開いて以下を実行
