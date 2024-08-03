@@ -183,3 +183,25 @@ The code and data are released under the NVIDIA Source Code License. Copyright �
 
 # Contact
 For questions, please contact [Bowen Wen](https://wenbowen123.github.io/).
+
+〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜
+以下はオリジナルのパッケージからの変更店
+
+・環境構築
+ビルドコマンド
+CMAKE_PREFIX_PATH=$CONDA_PREFIX/lib/python3.9/site-packages/pybind11/share/cmake/pybind11 bash build_all_conda.sh
+
+不足しているパッケージをインストール
+pip install git+https://github.com/openai/CLIP.git
+
+foundationposeのルートにfastsamをクローン。
+
+・実行
+テキストトピックをpublishするためにターミナルを開いて以下を実行
+（ros1をソースしてから）
+rostopic pub /text_prompt std_msgs/String "rectangle" -r 10
+
+２つめのターミナルを開いて以下を実行。gpuをisaac simと別のものを指定しないとメモリ不足で実行不可になるので注意。
+（ros1をソースしてから）
+export CUDA_VISIBLE_DEVICES="1";
+python run_demo_defom_ros.py
