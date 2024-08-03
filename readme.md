@@ -184,6 +184,7 @@ The code and data are released under the NVIDIA Source Code License. Copyright �
 # Contact
 For questions, please contact [Bowen Wen](https://wenbowen123.github.io/).
 
+```
 〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜
 以下はオリジナルのパッケージからの変更点
 
@@ -205,3 +206,4 @@ rostopic pub /text_prompt std_msgs/String "rectangle" -r 10
 （ros1をソースしてから）
 export CUDA_VISIBLE_DEVICES="1";
 python run_demo_defom_ros.py
+```
